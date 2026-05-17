@@ -122,6 +122,45 @@ p {
   padding-block: var(--space-xl);
 }
 
+.section--services {
+  background-color: var(--color-light);
+  padding-block: 120px;
+}
+
+.services-title {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 40px;
+}
+
+.services-title__left,
+.services-title__right {
+  flex: 1 1 320px;
+}
+
+.services-title__label {
+  color: rgba(0, 0, 0, 0.8);
+  text-transform: uppercase;
+  font-size: var(--font-size-p);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body);
+  margin-bottom: 16px;
+}
+
+.services-title__heading {
+  color: var(--color-dark);
+  margin: 0;
+}
+
+.services-title__copy {
+  color: rgba(0, 0, 0, 0.8);
+  font-size: var(--font-size-p);
+  line-height: var(--line-height-body);
+}
+
 
 /* ============================================================
    BUTTONS
@@ -281,20 +320,21 @@ p {
    HERO SECTION
    ============================================================ */
 .section--hero {
+  position: relative;
   background-color: var(--color-dark);
   padding-top: var(--space-xl);
   padding-bottom: 110px;
 }
 
 .hero-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
   gap: var(--space-lg);
 }
 
 /* Left: content */
-.hero-content {
+.hero-left {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -326,24 +366,58 @@ p {
   margin-bottom: 20px;
 }
 
-/* Right: placeholder */
 .hero-visual {
-  min-height: 380px;
-  background-color: rgba(36, 96, 253, 0.08);
-  border: 2px dashed rgba(36, 96, 253, 0.3);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(255, 255, 255, 0.25);
-  font-family: var(--font-family);
-  font-size: var(--font-size-p);
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
 }
 
-.hero-visual::after {
-  content: 'Visual placeholder';
+.hero-visual--bg {
+  z-index: 1;
 }
 
+.hero-visual--bg img {
+  display: block;
+  max-width: 420px;
+  width: auto;
+  height: auto;
+}
+
+.hero-visual--fg {
+  z-index: 2;
+  top: 0;
+  transform: none;
+  bottom: 0;
+}
+
+.hero-visual--fg img {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-height: 100%;
+}
+
+@media screen and (max-width: 1200px) {
+  .hero-inner {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .hero-left {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 660px;
+  }
+
+  .hero-visual {
+    display: none;
+  }
+}
 
 /* ============================================================
    FOOTER
@@ -406,4 +480,5 @@ p {
   object-fit: contain;
   opacity: 0.6;
   transition: opacity var(--transition-base);
+  border: none;
 }
